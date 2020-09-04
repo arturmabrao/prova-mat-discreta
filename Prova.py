@@ -1,25 +1,46 @@
 modulo = 29
-tabela = []
+tabela = [None] * 29
 numeros = [5,92,34,10,63]
+numeroBusca = 45
 count = 0
 
 while count < len(numeros):
    mod = numeros[count] % modulo
+   if tabela[mod] is None:
+      tabela[mod] = []
+      tabela[mod] = [numeros[count]]
+   elif not tabela[mod] is None:
+      value = tabela[mod]
+      tipo = type(value)
+      print(tipo.mro())
+      print(tipo.__class__)
+      
+      listAux = []
+      for valor in list(value):
+         listAux.append(valor)
+      listAux.append(numeros[count])
 
+      tabela[mod] = listAux
 
-for(i=0; i < numeros.length; i++){
-mod = numeros[i] % modulo;
-  if(tabela[mod] == null){
-      tabela[mod] = new Array();
-      tabela[mod][0] = numeros[i];
-  }else if(tabela[mod] != null){
-      tamanho = tabela[mod].length;
-      tabela[mod][tamanho] = numeros[i];
-  }
+   count+=1
 
-}
-for(p=0; p < tabela.length; p++){
-	if(tabela[p] == null){
-	tabela[p] = "  ";
-	}
-}
+countAux = 0
+while countAux<len(tabela):
+   if tabela[countAux] is None:
+      tabela[countAux] = " "
+   countAux+=1
+
+print("Tabela após inserção:",tabela)
+
+valorHash = numeroBusca % modulo
+if tabela[valorHash] is None:
+   print("Não encontrado o valor:", numeroBusca)
+elif not tabela[valorHash] is None:
+   value = tabela[valorHash]
+
+   for valor in list(value):
+      if int(valor) == int(numeroBusca):
+         x = tabela.index(value)
+         y = value.index(valor)
+         print(f'Posicao do item {valor} é ({x},{y})')
+         
