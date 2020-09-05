@@ -54,7 +54,6 @@ while countAux<len(tabela):
 
 print("Tabela após inserção:",tabela)
 
-
 while True:
    numeroBusca = (int(input(f'Digite o número inteiro que quer buscar: ')))
    busca(numeroBusca)
