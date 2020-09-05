@@ -6,7 +6,7 @@ $incremento = 3;
 for($i=0; $i< count($numeros); $i++){
 	$mod = $numeros[$i] % 29;
 	if($tabela[$mod] == $numeros[$i]){
-		echo $numeros[$i]." Encontrado principal//";
+		echo $numeros[$i]." Encontrado";
 	}else if($tabela[$mod] != $numeros[$i]){
 		$numColisao =0;
 		$numRepeticao =0;
