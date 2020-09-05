@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Array</h2>
+<p>(Adicione um numero para o array aparecer.)</p>
+<p id="demo"></p>
+
+<h4>Adição de numero</h4>
+<input type="number" name="add" id="nAdd">
+<button onclick="addNum()">Adicionar</button>
+
+<h4>Busca de numero</h4>
+<input type="number" name="bus" id="nBusca">
+<button onclick="buscanum()">Buscar</button>
+<script>
+var arrayHash = Array(1023);
+var numeros = [];
+var mod2 = 17;
+
+function organiza(){
+for(var i=0; i < numeros.length; i++){
+var mod = numeros[i] % 1023;
+var hash2 = numeros[i] % mod2;
+  if(arrayHash[mod] == null){
+      arrayHash[mod] = numeros[i];
+  }else {
+    var j = mod;
+    var naoEncontrouLocal = true;
+    
+  for (var k = 0; k <= 1022 && naoEncontrouLocal; k++) {
+   j=atualizar(j, hash2)
+   naoEncontrouLocal = condParada(j, arrayHash);
+   
+  }
+if(k==1023){
+  alert("Não foi possivel colocar o número "+numeros[i]);
+}else{
+  arrayHash[j] = numeros[i];
+}
+}
+}
+}
+
+function condParada (j, arrayHash){
+  if(arrayHash[j]==null){
+    return false;
+  }else{
+    return true;
+  }
+}
+
+function atualizar (j, hash2){
+var res = hash2+j;
+if(res>=1023){
+  res = res-1023;
+}
+return res;
+}
+
+function buscanum(){
+  var ta = true;
+  var valor = document.getElementById("nBusca").value;
+  for (var l = 0; l <=1023 ; l++) {
+   if(arrayHash[l] == valor){
+    alert("O valor esta na posicao "+l);
+    ta = false;
+   }
+  }
+  if (ta) {
+    alert("O valor não foi encontrado no vetor");
+  }
+}
+
+function addNum(){
+  arrayHash = Array(1023);
+  numeros.push(document.getElementById("nAdd").value);
+  organiza();
+  document.getElementById("demo").innerHTML = arrayHash;
+}
+</script>
+</body>
+</html>
